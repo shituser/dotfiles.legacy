@@ -1,6 +1,6 @@
 "----------------- Visuals -----------------
 set termguicolors
-colorscheme duotone-darkspace
+colorscheme onedark
 "let g:gruvbox_contrast_dark='soft'
 "let g:gruvbox_vert_split='bg1'
 
@@ -124,6 +124,7 @@ Plugin 'vim-airline/vim-airline-themes'
 set laststatus=2 " Airline always present
 set encoding=utf-8
 let g:airline_theme='base16' " Airline theme
+"let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#whitespace#checks = ['long']
 
@@ -172,6 +173,9 @@ Plugin 'tpope/vim-rails'
 Plugin 'Slava/vim-spacebars'
 
 Plugin 'elixir-editors/vim-elixir'
+
+Plugin 'airblade/vim-gitgutter'
+let g:gitgutter_enabled = 1
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
