@@ -7,13 +7,14 @@ colorscheme onedark
 set t_Co=256
 set t_AB=^[[48;5;%dm
 set t_AF=^[[38;5;%dm
+set cursorline
 
 syntax enable
 set background=dark
 set number
 set relativenumber
 set linespace=15
-set cc=100
+set cc=80
 set sw=0
 set expandtab
 set foldmethod=manual "manual
@@ -39,6 +40,7 @@ nmap <Leader><space> :nohlsearch<cr>
 
 " NerdTree
 nmap <M-1> :NERDTreeToggle<cr>
+nmap <Leader>s :NERDTreeToggle<cr>
 
 " NerdComment
 map <M-/> <Leader>c<space> 
@@ -52,6 +54,8 @@ nmap <C-s> :w<cr>
 nmap <C-r> :CtrlPBufTag<cr>
 nmap <C-e> :CtrlPMRUFiles<cr>
 let g:ctrlp_custom_ignore = 'node_modules\|git'
+set wildignore+=*_build/*
+set wildignore+=*doc/*
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
 
@@ -103,6 +107,12 @@ augroup autosourcing
 	autocmd Filetype javascript setlocal sw=4
 
         autocmd BufRead,BufNewFile *.es6 setfiletype javascript
+
+        augroup vimrc_todo
+                au!
+                au Syntax * syn match MyTodo /\v<(FIXME|TODO|OPTIMIZE|XXX)/ containedin=.*Comment,vimCommentTitle
+        augroup END
+        hi def link MyTodo Todo
 augroup END
 
 "----------------- Vundle Specific----------
@@ -129,7 +139,7 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#whitespace#checks = ['long']
 
 Plugin 'tpope/vim-fugitive' " Shows git branch in the airline
-Plugin 'jwalton512/vim-blade' " Laravel blade support
+"Plugin 'jwalton512/vim-blade' " Laravel blade support
 Plugin 'jiangmiao/auto-pairs' " Auto pair quotes and stuff
 Plugin 'tpope/vim-endwise'
 
@@ -137,27 +147,24 @@ Plugin 'mattn/emmet-vim' " Emmet mada faka
 
 Plugin 'scrooloose/nerdcommenter' "Easily comment out or uncomment smth
 Plugin 'othree/html5.vim' "Highlight html5 elements
-Plugin 'posva/vim-vue' "Vuejs syntax highlighting
+"Plugin 'posva/vim-vue' "Vuejs syntax highlighting
 
-Plugin 'terryma/vim-multiple-cursors' "No explanations needed
+"Plugin 'terryma/vim-multiple-cursors' "No explanations needed
 Plugin 'Yggdroot/indentLine'
-"Plugin 'nathanaelkane/vim-indent-guides'
-"let g:indent_guides_start_level=2
-"let g:indent_guides_guide_size=1
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround'
-Plugin 'tobyS/vmustache'
 
 "Plugin 'SirVer/ultisnips'
+"let g:python_host_prog = '/usr/bin/python'
 "let g:UltiSnipsExpandTrigger="<tab>"
 "let g:UltiSnipsJumpForwardTrigger="<tab>"
 "let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 "nmap <leader>es :UltiSnipsEdit<cr>
 
-Plugin 'tobyS/pdv'
 "PDV
-let g:pdv_template_dir = $HOME . '/.vim/bundle/pdv/templates_snip'
-nnoremap <leader>d :call pdv#DocumentWithSnip()<cr>;
+"Plugin 'tobyS/pdv'
+"let g:pdv_template_dir = $HOME . '/.dotfiles/nvim/bundle/pdv/templates_snip'
+"nnoremap <leader>d :call pdv#DocumentWithSnip()<cr>;
 
 Plugin 'godlygeek/tabular'
 
@@ -170,12 +177,17 @@ endif
 
 Plugin 'tpope/vim-rails'
 
-Plugin 'Slava/vim-spacebars'
-
-Plugin 'elixir-editors/vim-elixir'
+"Plugin 'Slava/vim-spacebars'
 
 Plugin 'airblade/vim-gitgutter'
 let g:gitgutter_enabled = 1
+
+Plugin 'rizzatti/dash.vim'
+
+Plugin 'sheerun/vim-polyglot'
+"Plugin 'elixir-lang/vim-elixir'
+Plugin 'avdgaag/vim-phoenix'
+Plugin 'mmorearty/elixir-ctags'
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

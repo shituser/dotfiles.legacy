@@ -53,12 +53,7 @@ set-window-option -g clock-mode-colour $base0C
 tm_session_name="#[default,bg=$base00,fg=$base0E] #S "
 set -g status-left "👽 $tm_session_name"
 
-# tm_tunes="#[bg=$base00,fg=$base0D] ♫ #(osascript -l JavaScript ~/.dotfiles/applescripts/tunes.js)"
-# tm_tunes="#[fg=$tm_color_music]#(osascript ~/.dotfiles/applescripts/tunes.scpt | cut -c 1-50)"
-# tm_battery="#(~/.dotfiles/bin/battery_indicator.sh)"
-# tm_battery="#[fg=$base0F,bg=$base00] ♥ #(battery)"
-set -g status-right "$(tmux-spotify both)"
-
-tm_date="#[default,bg=$base00,fg=$base0C] %R"
-tm_host="#[fg=$base0E,bg=$base00] #h "
-set -g status-right "$tm_date $tm_host"
+tm_date="#[fg=$base0E, bg=$base00] %a %h-%d %H:%M"
+tm_battery="#[fg=$base0F,bg=$base00] ♥ #(pmset -g batt | awk '{print $3}' | sed 's/;//' | tail -n+2)"
+#tm_spotify="♫ #{spotify_status} #{spotify_artist}: #{spotify_track}"
+set -g status-right "$tm_battery  $tm_date"

@@ -97,12 +97,13 @@ source $ZSH/oh-my-zsh.sh
 alias adolf="ssh root@138.68.76.13"
 alias charles="ssh root@45.63.114.171"
 alias joseph="ssh root@128.199.53.157"
-alias winston="ssh root@178.62.94.199"
+alias winston="ssh nikola@167.71.137.135"
 alias vi="nvim"
 alias tmux="tmux -2"
 alias art="php artisan"
 alias ll="ls -alFh"
-alias iex="iex -S mix"
+alias phpunit="vendor/bin/phpunit"
+alias myip="curl -s http://checkip.dyndns.org/ | sed 's/[a-zA-Z<>/ :]//g'"
 
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
@@ -110,4 +111,12 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH:$HOME/.dotfiles/tmux/scripts
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export HOMEBREW_GITHUB_API_TOKEN=d692ecc750e7ec51b7f6e8798c2760f49e35f564
+export HOMEBREW_GITHUB_API_TOKEN=43ea54b0aa506170e704cfc757c476383058123e
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+ctags=/usr/local/bin/ctags
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export ERL_AFLAGS="-kernel shell_history enabled"
